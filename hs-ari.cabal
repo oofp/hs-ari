@@ -1,0 +1,165 @@
+name:                hs-ari
+version:             0.1.1.1
+-- synopsis:            
+-- description:         
+homepage:            https://github.com/oofp/hs-ari#readme
+license:             OtherLicense
+license-file:        LICENSE
+author:              oofp
+maintainer:          oofp
+copyright:           2018-2020 oofp
+category:            Telecommunication
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  ghc-options:         -Wall 
+  exposed-modules:     ARICore
+                     , Utils
+                     , GroupCall
+                     , ARIUtils
+                     , FlowTools
+                     , Comm
+                     , Web
+                     , ARICore.ARIChannel
+                     , ARICore.ARIData
+                     , ARICore.ChannelCmds
+                     , ARICore.BridgeCmds
+                     , ARICore.PlaybackCmds
+                     , ARICore.RecordingCmds
+                     , ARICore.PJSIPConfigCmd
+                     , ARICore.ARIFlowBoot
+                     , ARICore.ARIFlow
+                     , ARIUtils.ChannelUtils
+                     , ARIUtils.SafeChannel
+                     , Comm.CommGate
+                     , Comm.FlowFactory
+                     , FlowTools.TimerTool
+                     , FlowTools.ExtComTool
+                     , FlowTools.FlowCallback
+                     , FlowTools.FlowCallbackComps
+                     , FlowTools.FlowEvDistr
+                     , FlowTools.DialAndIVR
+                     , FlowTools.Playlist
+                     , FlowTools.IVRComps
+                     , FlowTools.DTMFCollector
+                     , FlowTools.FlowSvc
+                     , FlowTools.PJSIPAccount
+                     , TestTools.FlowCmds
+                     , GroupCall.GroupCallData
+                     , GroupCall.GroupCallSrv
+                     , GroupCall.GroupCallReq
+                     , GroupCall.GroupCallAssets
+                     , Utils.CallbackCont
+                     , Utils.EventDistr
+                     , Utils.DTMF
+                     , Utils.MonitorCallback
+                     , FlowAppComps.CallbackComp
+                     , FlowAppComps.FlowAppContainerData
+                     , FlowAppComps.FlowAppContainer
+                     , FlowAppComps.BasicCallApp
+                     , FlowAppComps.BasicCallApp2
+                     , FlowAppComps.TeamCall.TeamCallData
+                     , FlowAppComps.TeamCall.TeamCallApp
+                     , FlowAppComps.DialingPlan
+                     , FlowAppComps.FlowAppHelpers
+                     , Web.WebServer
+                     , Web.WSServer
+  other-modules:       Lib.Prelude
+                     , ARICore.CallerID
+                     , ARICore.ARIHelper
+                     , ARICore.EventDispatcher
+                     , ARICore.HTTPCommand
+                     , ARICore.HTTPOpts
+                     , ARICore.ChannelHelper
+                     , Utils.LoggerSetup
+                     , Utils.MiscUtils
+                     , Utils.TChanUtils
+  build-depends:       base >= 4.7 && < 5
+                     , protolude
+                     , websockets
+                     , network
+                     , text
+                     , mtl
+                     , wreq
+                     , lens
+                     , lens-aeson
+                     , aeson
+                     , bytestring
+                     , uuid
+                     , raw-strings-qq
+                     , transformers
+                     , containers
+                     , protolude
+                     , stm-containers
+                     , stm
+                     , hashable
+                     , async
+                     , monad-loops-stm
+                     , unbounded-delays
+                     , concurrent-extra
+                     , hslogger
+                     , http-client
+                     , either
+                     , vector
+                     , time
+                     , wai
+                     , wai-websockets
+                     , warp
+                     , wai-app-static
+                     , http-types
+                     , warp-tls
+                     , scotty
+                     , wai-middleware-static
+                     , wai-util
+                     , network-uri
+                     , elm-bridge >= 0.4.0
+                     , template-haskell
+
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+executable incomTest
+    hs-source-dirs:      incomTest
+    main-is:             Main.hs
+    ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+    build-depends:       base
+                       , hs-ari
+                       , async
+                       , lens
+                       , lens-aeson
+                       , text
+                       , aeson
+                       , bytestring
+                       , protolude 
+    default-language:    Haskell2010
+    default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+test-suite hs-ari-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , hs-ari
+                     , protolude 
+                     , hspec
+                     , QuickCheck
+                     , bytestring
+                     , raw-strings-qq
+                     , aeson
+                     , lens
+                     , lens-aeson
+                     , text
+                     , mtl
+                     , unbounded-delays
+                     , stm
+                     , text
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+source-repository head
+  type:     git
+  location: https://github.com/oofp/hs-ari
